@@ -1,24 +1,18 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Car {
-    public:
-    virtual void startEngine() = 0; // Pure virtual function
-    virtual void shiftGear(int gear) = 0; // Pure virtual function
-    virtual void accelerate(int speed) = 0; // Pure virtual function
-    virtual void applyBrakes() = 0; // Pure virtual function
-    virtual void stopEngine() = 0; // Pure virtual function
-    virtual ~Car() {} // Virtual destructor
-};
-
-class SUV : public Car {  // Inherits from Car
-    public:
+// Properties and Behaviours of SUV is encapsulated in the class SUV
+class SUV{ 
+    // Properties/ Characteristics of the SUV
+    private:
     string brand;
     string model;
     bool isEngineOn;
     int  currentSpeed;
     int currentGear;
+    string type; 
 
+    public:
     // Constructor to initialize the SUV
     SUV(string b, string m){
         this-> brand = b;
@@ -26,9 +20,35 @@ class SUV : public Car {  // Inherits from Car
         isEngineOn = false;
         currentSpeed = 0;
         currentGear = 0;
+        type = "All-Terrain"; 
     }
 
-    // Implementing the pure virtual functions
+    // Getters for the properties
+    string getBrand() const {
+        return brand;
+    }
+    string getModel() const {
+        return model;
+    }
+    bool getIsEngineOn() const {
+        return isEngineOn;
+    }
+    int getCurrentSpeed() const {
+        return currentSpeed;
+    }
+    int getCurrentGear() const {
+        return currentGear;
+    }
+    string getTyres() const {
+        return type;
+    }
+
+    // Setters for the properties
+    void setTyres(const string& type) {
+        this->type = type;
+    }
+
+    // Methods/ Behaviors of the SUV
     void startEngine(){
         isEngineOn = true;
         cout << "Engine started for " << brand << " " << model << endl;
@@ -74,14 +94,21 @@ class SUV : public Car {  // Inherits from Car
 };
 
 int main(){
-    // Object of SUV class
-    Car* mySUV = new SUV("Mahindra", "XUV700");
+    SUV* mySUV = new SUV("Toyota", "Fortuner");
     mySUV->startEngine();
     mySUV->shiftGear(1);
     mySUV->accelerate(50);
-    mySUV->applyBrakes();
     mySUV->shiftGear(2);
-    mySUV->accelerate(80);
+    mySUV->accelerate(30);
     mySUV->applyBrakes();
     mySUV->stopEngine();
-} 
+
+    cout<< "Brand: " << mySUV->getBrand() << endl;
+    cout<< "Model: " << mySUV->getModel() << endl;
+    cout<< "Is Engine On: " << (mySUV->getIsEngineOn() ? "Yes" : "No") << endl;
+    cout<< "Current Speed: " << mySUV->getCurrentSpeed() << " km/h" << endl;
+    cout<< "Current Gear: " << mySUV->getCurrentGear() << endl;
+    cout<< "Tyres Type: " << mySUV->getTyres() << endl;
+    mySUV->setTyres("Mud-Terrain");
+    cout<< "Updated Tyres Type: " << mySUV->getTyres() << endl;
+}
