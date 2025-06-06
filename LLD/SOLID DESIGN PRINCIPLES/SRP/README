@@ -1,0 +1,41 @@
+# 🧠 Single Responsibility Principle (SRP)
+
+The **Single Responsibility Principle** states that _a class should have only one reason to change_. It is the **first principle** of SOLID in object-oriented design.
+
+In simple terms:
+> ✨ One class = One job
+
+---
+
+## 📂 Folder Contents
+
+| File Name             | Description                                      |
+|----------------------|--------------------------------------------------|
+| `SRP_Broke.cpp`       | ❌ A code example that **violates** SRP          |
+| `SRP_Followed.cpp`    | ✅ A code example that **follows** SRP properly  |
+| `srp.mmd`             | 🗂 UML diagram (Mermaid format) visualizing SRP  |
+
+---
+
+## 🔍 Problem: When SRP is Violated
+
+A single class may be doing **too many things** – like:
+- Managing product data
+- Printing invoices
+- Saving data to the database
+
+This becomes:
+- Hard to **maintain**
+- Hard to **test**
+- Violates the principle of **separation of concerns**
+
+---
+
+## ✅ Solution: Follow SRP
+
+Split the responsibilities into separate classes:
+- `Product` → Holds product details
+- `InvoicePrinter` → Responsible for printing invoices
+- `InvoiceSaver` → Responsible for saving invoices
+
+

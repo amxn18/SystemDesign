@@ -1,0 +1,25 @@
+classDiagram
+    class Product {
+      +name : string
+      +price : double
+    }
+
+    class ShoppingCart {
+        +addProduct(product: Product) : void
+        +getProducts() : vector<Product>
+        +calculateTotal() : double
+    }
+
+    class ShoppingCartPrinter {
+        +printInvoice() : void
+    }
+
+    class InvoiceSaver {
+        +saveToDB() : void
+    }
+
+    ShoppingCart <|-- ShoppingCartPrinter
+    ShoppingCart <|-- InvoiceSaver
+    Product <|-- ShoppingCart
+
+%% Right click anywhere and then select Preview to see the diagram
