@@ -1,0 +1,40 @@
+classDiagram
+    class DepositableAccount {
+        <<interface>>
+        +deposit(double amount)
+    }
+
+    class WithdrawableAccount {
+        <<interface>>
+        +withdraw(double amount)
+    }
+
+    DepositableAccount <|-- WithdrawableAccount
+
+    class SavingAccount {
+        -double balance
+        +deposit(double amount)
+        +withdraw(double amount)
+        +getBalance()
+    }
+    class CurrentAccount {
+        -double balance
+        +deposit(double amount)
+        +withdraw(double amount)
+        +getBalance()
+    }
+    class FixedDepositAccount {
+        -double balance
+        +deposit(double amount)
+        +getBalance()
+    }
+
+    WithdrawableAccount <|-- SavingAccount
+    WithdrawableAccount <|-- CurrentAccount
+    DepositableAccount <|-- FixedDepositAccount
+
+    class BankClient {
+        -vector~DepositableAccount*~ depositableAccount
+        -vector~WithdrawableAccount*~ withdrawableAccount
+        +processTransactions()
+    }

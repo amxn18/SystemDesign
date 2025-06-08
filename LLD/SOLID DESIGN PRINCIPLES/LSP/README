@@ -1,0 +1,35 @@
+# 🏦 Interface Segregation Principle (ISP) — Bank Account Example
+
+---
+
+## 📚 Principle Overview
+
+The **Interface Segregation Principle (ISP)** states:
+
+> Clients should not be forced to depend upon interfaces that they do not use.
+> Subclass should be substituable for their base claas.
+
+In other words:  
+**Many specific interfaces are better than one general-purpose interface.**  
+Classes should only implement the methods that are relevant to them.
+
+---
+
+## 📌 This Example
+
+- **DepositableAccount** is an abstract interface defining `deposit()` method.
+- **WithdrawableAccount** extends `DepositableAccount` by adding `withdraw()` method.
+- Account types:
+  - `SavingAccount` and `CurrentAccount` implement both deposit and withdraw.
+  - `FixedDepositAccount` implements only deposit (no withdraw allowed).
+- `BankClient` interacts with accounts through these interfaces:
+  - Maintains separate lists for depositable and withdrawable accounts.
+  - Calls appropriate methods on accounts without forcing unsupported operations.
+
+### How ISP is applied here?
+
+- Instead of a single interface with deposit and withdraw methods, we split interfaces:
+  - `DepositableAccount` for accounts that can accept deposits.
+  - `WithdrawableAccount` for accounts that can also withdraw.
+- This avoids forcing `FixedDepositAccount` to implement withdrawal it doesn’t support.
+- Classes depend only on the interfaces relevant to their behavior.
