@@ -1,0 +1,41 @@
+classDiagram
+    class Product {
+        +string name
+        +double price
+        +Product(string name, double price)
+    }
+    class ShoppingCart {
+        -vector~Product~ products
+        +void addProduct(Product product)
+        +const vector~Product~& getProducts() const
+        +double calculateTotal() const
+    }
+    class ShopingCartPrinter {
+        -const ShoppingCart& cart
+        +ShopingCartPrinter(const ShoppingCart& cart)
+        +void printInvoice() const
+    }
+    class InvoiceSaver {
+        -ShoppingCart* cart
+        <<interface>>
+        +virtual void save(ShoppingCart* cart) = 0
+    }
+    class InvoiceSaverSQL {
+        +void save(ShoppingCart* cart) override
+    }
+    class InvoiceSaverNoSQL {
+        +void save(ShoppingCart* cart) override
+    }
+    class InvoiceSaverXML {
+        +void save(ShoppingCart* cart) override
+    }
+
+    Product --> ShoppingCart : contains
+    ShoppingCart --> ShopingCartPrinter : used by
+    ShoppingCart <|-- InvoiceSaver : reference to
+    InvoiceSaver <|-- InvoiceSaverSQL : implements
+    InvoiceSaver <|-- InvoiceSaverNoSQL : implements
+    InvoiceSaver <|-- InvoiceSaverXML : implements
+
+
+%% Right-click --> Preview Diagram to see the rendered diagram

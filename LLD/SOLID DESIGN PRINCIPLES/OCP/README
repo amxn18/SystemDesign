@@ -1,0 +1,32 @@
+# 🛠️ Open-Closed Principle (OCP) Demonstration — Shopping Cart Example
+
+---
+
+## 📚 Principle Overview
+
+The **Open-Closed Principle (OCP)** states:
+
+> Software entities (classes, modules, functions, etc.) should be **open for extension** but **closed for modification**.
+
+Meaning:  
+You should be able to add new functionality **without changing existing code** — reducing risk of bugs and improving maintainability.
+
+---
+
+## 📌 This Example
+
+- **ShoppingCart** class manages a list of products and their prices.
+- **ShopingCartPrinter** prints the invoice from the shopping cart.
+- **InvoiceSaver** is an abstract interface to save invoices.
+- Specific implementations:
+  - `InvoiceSaverSQL`
+  - `InvoiceSaverNoSQL`
+  - `InvoiceSaverXML`
+
+### How OCP is applied here?
+
+- The `InvoiceSaver` abstract class defines the interface to save an invoice.
+- New ways to save invoices (e.g., SQL, NoSQL, XML) can be **added by creating new subclasses**.
+- Existing classes **do not need to be modified** to support new storage methods.
+- This keeps the system **extensible without altering tested and stable code**.
+
