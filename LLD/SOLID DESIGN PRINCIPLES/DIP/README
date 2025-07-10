@@ -1,0 +1,64 @@
+# DEPENDENCY INVERSION PRINCIPLE (DIP) - SOLID DESIGN PRINCIPLE
+
+## 🧠 WHAT IS DIP?
+The **Dependency Inversion Principle** is the "D" in SOLID.  
+It states that:
+> **"High-level modules should not depend on low-level modules. Both should depend on abstractions."**  
+> **"Abstractions should not depend on details. Details should depend on abstractions."**
+
+In simple terms:
+- Your **business logic (high-level)** should not depend directly on low-level implementation details.
+- Instead, both should depend on **interfaces or abstract classes**.
+
+## 💣 THE PROBLEM DIP SOLVES
+If a high-level module depends directly on a low-level class:
+- The system becomes tightly coupled
+- Changing one module may break the other
+- Reusability and testability are compromised
+- Mocking and replacing implementations becomes hard
+
+## 🔍 BAD DESIGN EXAMPLE (VIOLATES DIP)
+A `UserService` directly creates an instance of `MySQLDatabase` and calls its `saveUser()` method.  
+If you want to switch to `MongoDB`, you must change the core business logic.
+This means the high-level logic is **dependent on a specific low-level detail**, which violates DIP.
+
+## ✅ GOOD DESIGN WITH DIP
+We introduce an interface `Database` with a method `saveUser()`.
+- `MySQLDatabase` and `MongoDBDatabase` both implement this interface.
+- `UserService` depends on the `Database` abstraction, **not on any specific implementation**.
+Now:
+- We can swap out the database layer without touching `UserService`.
+- Code is more modular, extensible, and testable.
+
+## 🔧 DIP IN PRACTICE
+- **Always program to interfaces**, not implementations.
+- Use **Dependency Injection** (constructor injection, setter injection, or frameworks like Spring) to supply dependencies.
+- Invert control of dependencies from high-level modules to external configurations or dependency containers.
+
+## 📌 REAL-WORLD ANALOGY
+Imagine a remote control (high-level) that can only work with LG TVs (low-level).  
+
+Now you want to use the same remote for Sony or Samsung — it’s impossible unless you **abstract the communication protocol**.
+
+DIP says: create a `TVInterface`, and make all TVs implement it. Now your remote can control any brand without changing itself.
+
+## ✅ BENEFITS OF FOLLOWING DIP
+- Decouples high-level and low-level code
+- Improves maintainability and scalability
+- Easier to replace or upgrade components
+- Facilitates better unit testing with mocks
+- Leads to cleaner architecture and design
+
+## 🔚 CONCLUSION
+The Dependency Inversion Principle encourages:
+- Thinking in **interfaces and abstractions**
+- Avoiding tight coupling between modules
+- Enabling **flexible, plug-and-play architectures**
+
+It is the core of **Dependency Injection** and plays a major role in frameworks like **Spring**, **NestJS**, and **Angular**.
+## 🔗 RELATED CONCEPTS
+- Inversion of Control (IoC)
+- Dependency Injection (DI)
+- Interface Segregation Principle (ISP)
+- Clean Architecture
+- Service-Oriented Design
