@@ -1,0 +1,57 @@
+# INTERFACE SEGREGATION PRINCIPLE (ISP) - SOLID DESIGN PRINCIPLE
+
+## 🧠 WHAT IS ISP?
+The **Interface Segregation Principle** is the "I" in SOLID.  
+It states that:
+> **"Clients should not be forced to depend on interfaces they do not use"**
+In simple words, **no class should be forced to implement methods it doesn't need**.  
+Instead of one large interface, we should have multiple smaller, more specific interfaces.
+
+## 💣 THE PROBLEM ISP SOLVES
+When a class is forced to implement unnecessary methods just because they exist in a large interface, it leads to:
+- Useless or empty method implementations
+- Tight coupling between unrelated functionalities
+- Fragile code that breaks when unrelated parts change
+
+## 🔍 BAD DESIGN EXAMPLE (VIOLATES ISP)
+An interface `Worker` has unrelated methods:
+- `work()`
+- `eat()`
+Now a `Robot` class implements `Worker`, but it doesn’t eat — still it’s forced to implement `eat()` method.
+This violates ISP. Robot depends on a method it doesn't use.
+
+## ✅ GOOD DESIGN WITH ISP
+Split the `Worker` interface into two:
+- `Workable` → for `work()`
+- `Eatable` → for `eat()`
+Now:
+- `Human` implements both `Workable` and `Eatable`
+- `Robot` implements only `Workable`
+This ensures **each class only depends on what it actually uses**.
+
+## 🔧 ISP IN PRACTICE
+- Design **narrow, focused interfaces**
+- Avoid **"God interfaces"** (with too many responsibilities)
+- Favor **composition over inheritance** when extending behaviors
+- Split large interfaces into smaller, role-specific ones
+
+## 📌 REAL-WORLD ANALOGY
+Imagine a smart TV remote interface that includes:
+- `changeChannel()`
+- `playMusic()`
+- `turnOnMic()`
+
+Now, if you're using a **basic remote** that only changes channels, you shouldn't be forced to implement methods related to music and mic — ISP says: **give it a minimal interface**.
+
+## ✅ BENEFITS OF FOLLOWING ISP
+- Cleaner and more maintainable code
+- Higher reusability of components
+- Easier testing (mocking smaller interfaces)
+- Lower risk of bugs due to unrelated changes
+- Follows the idea of **separation of concerns**
+
+## 🔚 CONCLUSION
+ISP encourages:
+- Small, focused interfaces
+- Modular and decoupled designs
+- Robust, flexible systems that are easy to extend and maintain
