@@ -1,0 +1,54 @@
+📄 PROJECT: Document Editor using SOLID Principles (C++)
+
+📌 OVERVIEW:
+This project is a C++ implementation of a document editor that supports adding text, images, videos, and tables, along with saving the document to local files, databases, or cloud storage. The design strictly follows all 5 SOLID principles using Abstract Base Classes, Polymorphism, and Clean Architecture ideas.
+
+--------------------------------------------------------
+🔍 CONCEPTS USED:
+
+1️⃣ ABSTRACT CLASSES AND POLYMORPHISM:
+- **DocumentElements** and **Persistance** are both abstract base classes.
+- Different types of document content (Text, Image, Video, Table) inherit from DocumentElements.
+- Different storage methods (Local File, Database, Cloud) inherit from Persistance.
+
+2️⃣ COMPOSITION:
+- DocumentEditor contains a Document object and a Persistance strategy.
+- Document holds a collection of DocumentElements via a vector of pointers.
+
+3️⃣ OPEN-CLOSED PRINCIPLE:
+- Adding a new type of DocumentElement (e.g., AudioElement) requires no changes to existing Document, DocumentEditor, or other classes.
+- Adding new persistence methods (e.g., SaveToFTP) also follows OCP.
+
+--------------------------------------------------------
+🎯 HOW THIS PROJECT FOLLOWS SOLID PRINCIPLES:
+
+1️⃣ S — Single Responsibility Principle:
+- **DocumentEditor**: Responsible only for managing document content and triggering save.
+- **Document**: Responsible only for holding and rendering document elements.
+- **TextElement, ImageElement, etc.**: Each represents one type of document element.
+- **SaveToLocalFileStorage, SaveToDB, SaveToCloud**: Each handles one specific persistence mechanism.
+
+2️⃣ O — Open-Closed Principle:
+- System is open to extension (adding new document elements or new storage methods).
+- System is closed for modification because existing classes do not need to change when adding new elements or storage strategies.
+
+3️⃣ L — Liskov Substitution Principle:
+- Any subclass object (e.g., TextElement, ImageElement) can replace its parent type (DocumentElements) without affecting the program.
+- Similarly, SaveToLocalFileStorage, SaveToDB, and SaveToCloud can be interchanged through the Persistance pointer.
+
+4️⃣ I — Interface Segregation Principle:
+- There are no fat interfaces; DocumentElements has only one method: render().
+- Persistance has only one method: save().
+- No class is forced to implement unused methods.
+
+5️⃣ D — Dependency Inversion Principle:
+- High-level modules (DocumentEditor) do not depend on low-level modules (SaveToLocalFileStorage, SaveToDB).
+- Both depend on abstractions (Persistance interface).
+- This allows swapping the storage method at runtime without touching DocumentEditor logic.
+
+--------------------------------------------------------
+⚙️ SYSTEM WORKFLOW SUMMARY:
+- Create Document object → Add various elements (Text, Image, Video, Table).
+- Render Document → Save Document using any chosen persistence strategy.
+- Easy to extend without touching core logic.
+

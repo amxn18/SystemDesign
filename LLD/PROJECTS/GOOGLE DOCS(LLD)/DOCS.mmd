@@ -1,0 +1,63 @@
+classDiagram
+    class DocumentElements {
+        <<abstract>>
+        +render() : string
+    }
+    class TextElement {
+        -text : string
+        +render() : string
+    }
+    class ImageElement {
+        -imagePath : string
+        +render() : string
+    }
+    class VideoElement {
+        -videoPath : string
+        +render() : string
+    }
+    class TableElement {
+        -tableData : string
+        +render() : string
+    }
+    class Document {
+        -elements : vector<DocumentElements*>
+        +addElement(element : DocumentElements*) : void
+        +removeElement(element : DocumentElements*) : void
+        +renderDocument() : string
+    }
+    class Persistance {
+        <<abstract>>
+        +save(data : string) : void
+    }
+    class SaveToLocalFileStorage {
+        -filename : string
+        +save(data : string) : void
+    }
+    class SaveToDB {
+        +save(data : string) : void
+    }
+    class SaveToCloud {
+        +save(data : string) : void
+    }
+    class DocumentEditor {
+        -document : Document*
+        -storage : Persistance*
+        -renderedDocuments : string
+        +addText(text : string) : void
+        +addImage(imagePath : string) : void
+        +addVideo(videoPath : string) : void
+        +addTable(tableData : string) : void
+        +renderDocument() : string
+        +saveDocument() : void
+    }
+
+    DocumentElements <|-- TextElement
+    DocumentElements <|-- ImageElement
+    DocumentElements <|-- VideoElement
+    DocumentElements <|-- TableElement
+    Document *-- DocumentElements
+    Persistance <|-- SaveToLocalFileStorage
+    Persistance <|-- SaveToDB
+    Persistance <|-- SaveToCloud
+    DocumentEditor *-- Document
+    DocumentEditor *-- Persistance
