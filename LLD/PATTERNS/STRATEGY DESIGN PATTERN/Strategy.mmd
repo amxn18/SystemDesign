@@ -1,0 +1,70 @@
+classDiagram
+    class WalkAbleRobot {
+        <<interface>>
+        +walk()
+    }
+    class NormalWalk {
+        +walk()
+    }
+    class NoWalk {
+        +walk()
+    }
+    class FlyableRobot {
+        <<interface>>
+        +fly()
+    }
+    class NormalFly {
+        +fly()
+    }
+    class NoFly {
+        +fly()
+    }
+    class TalkableRobot {
+        <<interface>>
+        +talk()
+    }
+    class NormalTalk {
+        +talk()
+    }
+    class NoTalk {
+        +talk()
+    }
+    class Projectable {
+        <<interface>>
+        +projection()
+    }
+    class NormalProjection {
+        +projection()
+    }
+    class NoProjection {
+        +projection()
+    }
+    class Robot {
+        -walkStrategy : WalkAbleRobot*
+        -flyStrategy : FlyableRobot*
+        -talkStrategy : TalkableRobot*
+        -projectionStrategy : Projectable*
+        +performWalk()
+        +performFly()
+        +performTalk()
+        +projection()
+    }
+    class CompanionRobot {
+    }
+    class CleanerRobot {
+    }
+
+    WalkAbleRobot <|.. NormalWalk
+    WalkAbleRobot <|.. NoWalk
+    FlyableRobot <|.. NormalFly
+    FlyableRobot <|.. NoFly
+    TalkableRobot <|.. NormalTalk
+    TalkableRobot <|.. NoTalk
+    Projectable <|.. NormalProjection
+    Projectable <|.. NoProjection
+    Robot <|-- CompanionRobot
+    Robot <|-- CleanerRobot
+    Robot --> WalkAbleRobot
+    Robot --> FlyableRobot
+    Robot --> TalkableRobot
+    Robot --> Projectable
