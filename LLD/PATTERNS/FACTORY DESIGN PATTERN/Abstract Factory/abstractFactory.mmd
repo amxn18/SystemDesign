@@ -1,0 +1,50 @@
+classDiagram
+    class Burger {
+        +prepare() : void
+    }
+    class CheeseBurger
+    class VeggieBurger
+    class chickenBurger
+    class WheatCheeseBurger
+    class WheatVeggieBurger
+    class WheatChickenBurger
+    
+    Burger <|-- CheeseBurger
+    Burger <|-- VeggieBurger
+    Burger <|-- chickenBurger
+    Burger <|-- WheatCheeseBurger
+    Burger <|-- WheatVeggieBurger
+    Burger <|-- WheatChickenBurger
+
+    class GarlicBread {
+        +prepare() : void
+    }
+    class BasicGarlicBread
+    class wheatGarlicBread
+
+    GarlicBread <|-- BasicGarlicBread
+    GarlicBread <|-- wheatGarlicBread
+
+    class MealFactory {
+        +createBurger(type) : Burger*
+        +createGarlicBread(type1) : GarlicBread*
+    }
+    class ABCMealFactory
+    class XYZMealFactory
+
+    MealFactory <|-- ABCMealFactory
+    MealFactory <|-- XYZMealFactory
+
+    ABCMealFactory --> CheeseBurger
+    ABCMealFactory --> VeggieBurger
+    ABCMealFactory --> chickenBurger
+    ABCMealFactory --> BasicGarlicBread
+
+    XYZMealFactory --> WheatCheeseBurger
+    XYZMealFactory --> WheatVeggieBurger
+    XYZMealFactory --> WheatChickenBurger
+    XYZMealFactory --> wheatGarlicBread
+
+    class Main
+    Main --> ABCMealFactory
+    Main --> XYZMealFactory

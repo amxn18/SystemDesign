@@ -1,0 +1,26 @@
+classDiagram
+    class Burger {
+        <<interface>>
+        +prepare()
+    }
+
+    class CheeseBurger {
+        +prepare()
+    }
+
+    class VeggieBurger {
+        +prepare()
+    }
+
+    class chickenBurger {
+        +prepare()
+    }
+
+    class BurgerFactory {
+        +createBurger(type: string) Burger*
+    }
+
+    Burger <|.. CheeseBurger
+    Burger <|.. VeggieBurger
+    Burger <|.. chickenBurger
+    BurgerFactory --> Burger

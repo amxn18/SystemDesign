@@ -1,0 +1,60 @@
+classDiagram
+    class Burger {
+        <<interface>>
+        +prepare()
+    }
+
+    class CheeseBurger {
+        +prepare()
+    }
+
+    class VeggieBurger {
+        +prepare()
+    }
+
+    class chickenBurger {
+        +prepare()
+    }
+
+    class WheatCheeseBurger {
+        +prepare()
+    }
+
+    class WheatVeggieBurger {
+        +prepare()
+    }
+
+    class WheatChickenBurger {
+        +prepare()
+    }
+
+    class BurgerFactory {
+        <<abstract>>
+        +createBurger(type: string) Burger*
+    }
+
+    class ABCBurgerFactory {
+        +createBurger(type: string) Burger*
+    }
+
+    class XYZBurgerFactory {
+        +createBurger(type: string) Burger*
+    }
+
+    Burger <|.. CheeseBurger
+    Burger <|.. VeggieBurger
+    Burger <|.. chickenBurger
+    Burger <|.. WheatCheeseBurger
+    Burger <|.. WheatVeggieBurger
+    Burger <|.. WheatChickenBurger
+
+    BurgerFactory <|.. ABCBurgerFactory
+    BurgerFactory <|.. XYZBurgerFactory
+
+    ABCBurgerFactory --> CheeseBurger
+    ABCBurgerFactory --> VeggieBurger
+    ABCBurgerFactory --> chickenBurger
+
+    XYZBurgerFactory --> WheatCheeseBurger
+    XYZBurgerFactory --> WheatVeggieBurger
+    XYZBurgerFactory --> WheatChickenBurger

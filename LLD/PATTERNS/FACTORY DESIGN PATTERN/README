@@ -1,0 +1,84 @@
+# 🏭 Factory Design Pattern 
+
+## 🎯 What Is Factory Design Pattern?
+
+The **Factory Design Pattern** is a *creational design pattern* used in software engineering to handle the problem of creating objects without specifying the exact class of the object that will be created.
+
+It provides a way to delegate the instantiation logic to subclasses or separate classes. This makes the codebase more flexible and maintainable, especially when new types of objects are frequently added.
+
+In simple words:
+- **Client requests an object.**
+- **Factory decides which class to instantiate and returns it.**
+
+---
+
+## 🤔 Why Factory Design Pattern?
+
+- Reduces coupling between code that uses objects and code that creates them.
+- Makes code easier to extend and maintain.
+- Supports the *Open/Closed Principle* — you can introduce new types without changing existing code.
+
+---
+
+## 🛠️ Types of Factory Patterns
+
+### 1️⃣ Simple Factory Pattern (Also called Static Factory)
+- **What It Does:** One class (factory) is responsible for creating instances of several related classes.
+- **How It Works:** Based on input (like a string or enum), it returns the correct object.
+- **Use Case:** When creating an object is complex or involves conditional logic.
+
+**⚡ Characteristics:**
+- Centralized object creation.
+- Reduces repeated object creation code.
+- Not a formal GoF pattern but commonly used.
+
+---
+
+### 2️⃣ Factory Method Pattern
+- **What It Does:** Defines an interface for creating an object but allows subclasses to alter the type of objects that will be created.
+- **How It Works:** Abstract class declares the factory method, and each subclass implements it.
+
+**⚡ Characteristics:**
+- Promotes loose coupling.
+- Useful when the exact type of the object isn't known in advance.
+- Encourages subclassing and polymorphism.
+
+**✅ Example Context:** Creating different types of notifications (Email, SMS, Push) using separate subclasses of a NotificationFactory.
+
+---
+
+### 3️⃣ Abstract Factory Pattern
+- **What It Does:** Provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+- **How It Works:** Abstract factory declares methods to create various product types. Concrete factories implement these methods to produce family-related products.
+
+**⚡ Characteristics:**
+- Ideal for creating *product families* (e.g., Button + Checkbox for Windows vs. Mac).
+- Ensures products from the same family are used together.
+- Reduces dependency on specific classes.
+
+**✅ Example Context:** Creating GUI elements for multiple operating systems like Windows, Mac, or Linux, ensuring consistent look and behavior across the family.
+
+---
+
+## 📝 Summary Table
+
+| Pattern                | Responsibility                         | Flexibility          | Example Scenario                |
+|-----------------------|---------------------------------------|---------------------|--------------------------------|
+| Simple Factory        | Single factory creates all objects    | Low                 | Pizza types, shapes            |
+| Factory Method        | Subclasses decide object creation     | Medium              | Notifications, Vehicles        |
+| Abstract Factory      | Family of factories for related types | High                | GUI Elements, Meal components  |
+
+---
+
+## 🎯 Conclusion
+
+The **Factory Design Pattern** and its types help achieve:
+- Code extensibility.
+- Separation of concerns.
+- Flexibility in object creation.
+
+Choosing between Simple Factory, Factory Method, and Abstract Factory depends on:
+- The complexity of the object creation logic.
+- Whether related objects need to be grouped as families.
+- The level of flexibility and decoupling required in your system architecture.
+
