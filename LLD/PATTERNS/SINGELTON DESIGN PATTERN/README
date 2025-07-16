@@ -1,0 +1,56 @@
+# Singleton Design Pattern Explained
+
+## What Is a Singleton Design Pattern?
+- The Singleton Design Pattern ensures **only one instance** of a class is created throughout the entire application.
+- It provides a **global access point** to that instance.
+- It is commonly used for:
+  - Database connections
+  - Configuration managers
+  - Logging systems
+  - Cache systems
+---
+## 📖 Concept Breakdown:
+- ✅ **Single Instance:** Only one object of the class exists.
+- ✅ **Global Access:** Accessed via a static method (commonly named `getInstance()`).
+- ✅ **Lazy Initialization:** Instance is created only when it is first needed.
+- ✅ **Private Constructor:** Prevents external instantiation.
+---
+## 🏗️ Real-World Examples:
+- **Database Connection Pool:** Only one connection manager needed for efficiency.
+- **Logger Service:** Same logger instance used across all classes.
+- **Configuration Manager:** Application-wide settings accessed via one instance.
+- **File Manager:** Managing file system operations consistently through a single object.
+
+---
+## 🚫 Disadvantages of Singleton:
+- ❌ **Global State:** Makes unit testing harder since state persists across tests.
+- ❌ **Hidden Dependencies:** Classes relying on singletons become tightly coupled.
+- ❌ **Not Thread-Safe by Default:** Requires special handling in multithreaded environments.
+- ❌ **Difficult to Extend:** Cannot inherit easily due to controlled instantiation.
+
+---
+
+## ⚙️ Multithreading and Locking
+
+- 🛡️ **Thread Safety Issue:** 
+  - If two threads call `getInstance()` simultaneously and `instance` is `nullptr`, two instances could be created.
+
+- 🔒 **Solution: Locking**
+  - Use **mutexes** (mutual exclusion locks) to ensure only one thread can create the instance at a time.
+  - This is called **Double-Checked Locking**:
+    1. Check if instance is `nullptr`.
+    2. Lock the critical section.
+    3. Check again inside lock, then create the instance.
+  
+- 🛠️ **Trade-off:**
+  - Locking may add a small performance overhead, but it guarantees safety in concurrent environments.
+
+---
+
+## 🛑 Important Notes:
+
+- Singleton is sometimes considered an **anti-pattern** because of its drawbacks.
+- Use it **only when truly necessary** and avoid overusing it.
+- Thread-safe singletons are essential for any modern, concurrent application.
+
+---
